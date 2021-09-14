@@ -51,17 +51,121 @@
 
 /* End of resetting CSS */
 
+
+/* Classes */
 .calc-container {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: white;
     justify-content: center;
     align-items: center;
 }
 
 .calc-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     width: 30vw;
-    height: 50vh;
-    background-color: white;
+    height: 60vh;
+    background-color: gray;
+}
+
+.top-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+}
+
+.top-btn {
+    width: 45%;
+    height: 100%;
+    background-color: blue;
+    
+}
+
+/* IDs */
+
+#display {
+    background-color: blue;
+    width: 90%;
+    height: 20%;
+
+}
+
+#btn-container {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "seven eight nine divide"
+                         "four five six multiply"
+                         "one two three subtract"
+                         "zero zero point add";
+    gap: 0.2rem;
+    width: 90%;
+    height: 70%;
+}
+
+#zero {
+    grid-area: zero;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#add {
+    grid-area: add;
+}
+
+#subtraction {
+    grid-area: subtract;
+}
+
+#multiply {
+    grid-area: multiply;
+}
+
+#divide {
+    grid-area: divide;
+}
+
+#point {
+    grid-area: point;
 }
