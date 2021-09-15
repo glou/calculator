@@ -84,14 +84,25 @@
 .top-btn {
     width: 45%;
     height: 100%;
-    background-color: blue;
+    background-color: white;
     
+}
+
+.number-btn {
+    background-color: coral;
+}
+
+.operation-btn {
+    background-color: brown;
 }
 
 /* IDs */
 
 #display {
-    background-color: blue;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
     width: 90%;
     height: 20%;
 
