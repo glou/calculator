@@ -51,13 +51,28 @@
 
 /* End of resetting CSS */
 
+/* The code which follow is to exclude margins in the computation of lenghts */
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+}
+
+button {
+    background-color: rgb(57, 100, 62);
+    color: rgb(255, 255, 255);
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+}
 
 /* Classes */
 .calc-container {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: rgb(80, 80, 80);
     justify-content: center;
     align-items: center;
 }
@@ -67,9 +82,12 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 30vw;
-    height: 60vh;
-    background-color: gray;
+    width: 20vw;
+    height: 70vh;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgb(45, 45, 45);   
+    box-shadow: 15px 10px 1px 5px rgba(45, 45, 45, 0.5); 
 }
 
 .top-btn-container {
@@ -79,21 +97,13 @@
     align-items: center;
     width: 90%;
     height: 10%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .top-btn {
     width: 45%;
-    height: 100%;
-    background-color: white;
-    
-}
-
-.number-btn {
-    background-color: coral;
-}
-
-.operation-btn {
-    background-color: brown;
+    height: 90%;
 }
 
 /* IDs */
@@ -101,11 +111,16 @@
 #display {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    background-color: white;
+    align-items:flex-end;
+    background-color: rgb(57, 100, 62);
+    border: 0px solid black;
+    box-shadow: inset 0px 0px 3px 4px rgba(192, 192, 192, 0.651);
     width: 90%;
-    height: 20%;
-
+    height: 12%;
+    padding: 0.5rem;
+    color:rgba(255, 255, 255, 0.6);
+    font-family: "Quantico", Arial, Helvetica, sans-serif;
+    font-size: 28px;
 }
 
 #btn-container {
@@ -115,10 +130,14 @@
     grid-template-areas: "seven eight nine divide"
                          "four five six multiply"
                          "one two three subtract"
-                         "zero zero point add";
+                         "zero point equal add";
     gap: 0.2rem;
     width: 90%;
     height: 70%;
+}
+
+#bksp-btn {
+    font-size: 1.4rem;
 }
 
 #zero {
@@ -179,4 +198,8 @@
 
 #point {
     grid-area: point;
+}
+
+#equal-btn {
+    grid-area: equal;
 }
