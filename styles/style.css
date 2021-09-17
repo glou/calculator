@@ -67,14 +67,54 @@ button {
     letter-spacing: 0.1rem;
 }
 
+ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+    font-size: 1rem;
+    font-family: monospace, sans-serif;
+    letter-spacing: .03rem;
+}
+
+li {
+    padding-bottom: 0.5rem;
+}
+
+p {
+    font-size: 2rem;
+    font-family: "Ubuntu", arial, sans-serif;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: rgb(57, 100, 62);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
 /* Classes */
 .calc-container {
     display: flex;
     width: 100vw;
     height: 100vh;
     background-color: rgb(80, 80, 80);
-    justify-content: center;
+    justify-content:space-evenly;
     align-items: center;
+}
+
+.calc-specs {
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgb(45, 45, 45);   
+    box-shadow: 15px 15px 1px 5px rgba(45, 45, 45, 0.5);
+    color:rgb(255, 255, 255);
+    padding: 1em;
+    position: relative;    
+    top: -22vh;
+
 }
 
 .calc-frame {

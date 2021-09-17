@@ -1,10 +1,10 @@
 /*  JS code for the calculator project, under The Odin Project
     Started: September, 2021.
+    Ended: September, 16, 2021.
     Specification: - Basic calculator (executes the four basic operations);
-                   - Has a display, a "clear" button, besides the buttons for the operations;
-                   - Supports floating point numbers up to one decimal place (extra);
-                   - Supports keyboard (extra);
-                   - (TO DO);
+                   - Has a display, a "clear" button and a backspace button, besides the buttons for the operations;
+                   - Supports floating point numbers up to five decimal places;
+                   - Supports keyboard;                   
 */
 
 //Operations
@@ -25,7 +25,7 @@ const operate = (a, b, operation) => {
     case '/': {
      let result = divide(a, b);
      if (result === 'err') {
-       display.textContent = 'ERR, DESTROYING (no, but don\'t divide by 0)'
+       display.textContent = 'ERR, DESTROYING (no, but don\'t divide by 0)';
        firstValue = null;
        secondValue = null;
        operation = null;
@@ -91,7 +91,7 @@ const displayNumbers = (e) => {
 };
 
 
-//Callbacks for the numbers and operations buttons
+//Callbacks for the numbers buttons
 const numbersBtn = Array.from(document.getElementsByClassName('number-btn'));
 numbersBtn.forEach(element => {element.addEventListener('click', displayNumbers)});
 
@@ -105,6 +105,7 @@ pointBtn.addEventListener('click', () => {
 
 });
 
+//Callback for the operations buttons
 const operationsBtn = Array.from(document.getElementsByClassName('operation-btn'));
 operationsBtn.forEach(element => {element.addEventListener('click', holdInfo)});
 
@@ -204,5 +205,4 @@ const captureKeys = (e) => {
   }  
 }
 
-document.addEventListener('keydown', captureKeys)
-
+document.addEventListener('keydown', captureKeys);
