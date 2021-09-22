@@ -42,6 +42,8 @@ let firstValue = null;
 let secondValue = null;
 let operation = null;
 
+//To manipulate the display
+const display = document.getElementById('display');
 
 /* This variable's purpose is to track the last input was whether
    a number or an operation, so we keep the display or we clear it
@@ -73,25 +75,41 @@ const holdInfo = (e) => {
     operation = e.target.value;    
   }  
   flag = 'operation';
+
+  if (disabledBtns === true) {
+    disableBtns(false);
+  }
 }
 
-//To manipulate the display
-const display = document.getElementById('display');
-
 //Callback for displaying the numbers
+let displayLength
 const displayNumbers = (e) => {  
-  if (flag === 'operation' || flag === 'equal' || secondValue === 'err') {
+  if (flag === 'equal') {
+    clearBtn.click();
+  }
+  if (flag === 'operation' || secondValue === 'err') {
     secondValue = null;
     display.textContent = '';
     display.textContent = e.target.value;
     flag = 'number';    
   } else {
-    display.textContent += e.target.value;
-  } 
+    //Don't register more inputs if a floating point number with 5 decimal places is already displayed
+    if (display.textContent.indexOf('.') !== -1) {
+      displayLength = display.textContent.slice(display.textContent.indexOf('.'));
+      if (displayLength.length === 6) return;
+    }
+    display.textContent += e.target.value;    
+  }
+  //Check each input to disable new inputs if the display's length (excluding the point) = 12
+  if (display.textContent.length === 13 && display.textContent.indexOf('.') !== -1) {
+    disableBtns(true);    
+  } else if (display.textContent.length === 12 && display.textContent.indexOf('.') === -1) {
+    disableBtns(true);
+  }
 };
 
 
-//Callbacks for the numbers buttons
+//Callback for the numbers buttons
 const numbersBtn = Array.from(document.getElementsByClassName('number-btn'));
 numbersBtn.forEach(element => {element.addEventListener('click', displayNumbers)});
 
@@ -102,7 +120,6 @@ pointBtn.addEventListener('click', () => {
     display.textContent += '.';
     pointBtn.disabled = true;
   }
-
 });
 
 //Callback for the operations buttons
@@ -117,12 +134,14 @@ clearBtn.addEventListener('click', () => {
   operation = null;
   flag = 'number';
   pointBtn.disabled = false;
+  if (disabledBtns === true) disableBtns(false);
   display.textContent = '';
 })
 
 //Callback for backspace button
 const bkspBtn = document.getElementById('bksp-btn');
 bkspBtn.addEventListener('click', () => {
+  if (disabledBtns === true) disableBtns(false)
   display.textContent = display.textContent.slice(0, display.textContent.length - 1)
 })
 
@@ -136,11 +155,16 @@ equalBtn.addEventListener('click', () => {
   secondValue = Math.round(operate(firstValue, secondValue, operation) * 100000) / 100000; //Executes an operation when there're 2 values, up to 5 decimal places
   if (secondValue === 'err') return;
   display.textContent = secondValue;
-  firstValue = secondValue;    
+  firstValue = secondValue;
+  secondValue = null;  
   operation = null;
   flag = 'equal';
-  if (display.textContent.indexOf('.') != -1) {
-    pointBtn.disabled = true;
+  if (display.textContent.length === 13 && display.textContent.indexOf('.') !== -1) {
+    disableBtns(true);    
+  } else if (display.textContent.length === 12 && display.textContent.indexOf('.') === -1) {
+    disableBtns(true);
+  } else {
+    disableBtns(false);
   }
 })
 
@@ -206,3 +230,18 @@ const captureKeys = (e) => {
 }
 
 document.addEventListener('keydown', captureKeys);
+
+//To toggle buttons according to display's length
+let disabledBtns = false;
+const disableBtns = (action) => {
+  if (action === true) {
+    numbersBtn.forEach(element => element.disabled = true);
+    pointBtn.disabled = true;
+    disabledBtns = true;
+  }
+  else {
+    numbersBtn.forEach(element => element.disabled = false);
+    pointBtn.disabled = false;
+    disabledBtns = false;
+  }
+}
